@@ -1,0 +1,4 @@
+node_modules/
+todoApplication.db
+.env
+.DS_Store

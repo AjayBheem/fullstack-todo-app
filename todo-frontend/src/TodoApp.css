@@ -1,0 +1,126 @@
+/* Container */
+.todo-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Input Section */
+.todo-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.todo-input button {
+  padding: 10px 15px;
+  border: none;
+  background: #4cafef;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.todo-input button:hover {
+  background: #2196f3;
+}
+
+/* Todo List */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.todo-text {
+  font-size: 16px;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status-badge.todo {
+  background: #ffc107;
+  color: #333;
+}
+
+.status-badge.progress {
+  background: #17a2b8;
+  color: white;
+}
+
+.status-badge.done {
+  background: #28a745;
+  color: white;
+}
+
+/* Buttons inside list */
+.actions button {
+  margin-left: 5px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.actions button:hover {
+  opacity: 0.9;
+}
+
+.actions button:nth-child(1) {
+  background: #17a2b8;
+  color: white;
+}
+
+.actions button:nth-child(2) {
+  background: #28a745;
+  color: white;
+}
+
+.actions button:nth-child(3) {
+  background: #dc3545;
+  color: white;
+}
+
+.empty {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+}
