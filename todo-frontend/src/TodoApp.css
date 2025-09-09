@@ -1,126 +1,264 @@
-/* Container */
+/* TodoApp.css */
+
+/* Global */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  margin: 0;
+  padding: 0;
+}
+.h2 {
+  font-family: 'Poppins', 'Helvetica', 'Arial', sans-serif;
+  font-size: 16px;
+  text-align: left;
+}
+
+.h2 span {
+  display: inline-block;      /* allows width & height */
+  background-color: #1976d2;
+  color: #ffffff;
+  padding: 5px 10px;          /* makes it look like a badge */
+  border-radius: 5px;         /* rounded corners */
+  border-radius: 10px;
+  font-weight: bold;
+  min-width: 10px;             /* ensures it’s wide enough for numbers */
+  text-align: center;
+}
+
+
 .todo-container {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  font-family: "Segoe UI", sans-serif;
+  max-width: 800px;
+  margin: 50px auto;
+  background-color: #ffffff;
+  padding: 35px 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s;
+}
+
+.todo-container:hover {
+  transform: translateY(-5px);
 }
 
 .title {
   text-align: center;
   color: #333;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  margin-bottom: 25px;
 }
 
 /* Input Section */
 .todo-input {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
 }
 
 .todo-input input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
+  flex: 2;
+  padding: 12px;
   border-radius: 8px;
+  border: 1px solid #ccc;
   font-size: 16px;
+  transition: 0.3s;
+}
+
+.todo-input input:focus {
+  outline: none;
+  border-color: #2196f3;
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+}
+
+.todo-input select {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .todo-input button {
-  padding: 10px 15px;
-  border: none;
-  background: #4cafef;
-  color: white;
+  padding: 12px 20px;
   border-radius: 8px;
-  cursor: pointer;
+  border: none;
+  background: linear-gradient(45deg, #4caf50, #66bb6a);
+  color: white;
   font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .todo-input button:hover {
-  background: #2196f3;
+  background: linear-gradient(45deg, #43a047, #4caf50);
 }
 
-/* Todo List */
+/* List Section */
 .todo-list {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .todo-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
-  margin-bottom: 10px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  border: 1px solid #eee;
+  background: linear-gradient(135deg, #fefefe, #e0e0e0);
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.todo-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
 .todo-text {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
   font-size: 16px;
+}
+
+/* Priority Badges */
+.priority-badge {
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  font-size: 12px;
+}
+
+.priority-badge.high {
+  background-color: #e53935;
+}
+
+.priority-badge.medium {
+  background-color: #fbc02d;
+  color: #333;
+}
+
+.priority-badge.low {
+  background-color: #43a047;
 }
 
 /* Status Badges */
 .status-badge {
-  padding: 3px 8px;
-  border-radius: 6px;
-  margin-left: 10px;
-  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 10px;
   font-weight: bold;
+  color: white;
+  font-size: 12px;
 }
 
 .status-badge.todo {
-  background: #ffc107;
-  color: #333;
+  background-color: #1976d2;
 }
 
 .status-badge.progress {
-  background: #17a2b8;
-  color: white;
+  background-color: #f57c00;
 }
 
 .status-badge.done {
-  background: #28a745;
-  color: white;
+  background-color: #7b1fa2;
 }
 
-/* Buttons inside list */
+/* Action Buttons */
 .actions button {
-  margin-left: 5px;
-  padding: 6px 10px;
+  margin-left: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
-}
-
-.actions button:hover {
-  opacity: 0.9;
+  font-size: 13px;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 .actions button:nth-child(1) {
-  background: #17a2b8;
+  background: linear-gradient(45deg, #2196f3, #64b5f6);
   color: white;
+}
+
+.actions button:nth-child(1):hover {
+  background: linear-gradient(45deg, #1976d2, #42a5f5);
 }
 
 .actions button:nth-child(2) {
-  background: #28a745;
+  background: linear-gradient(45deg, #9c27b0, #ba68c8);
   color: white;
 }
 
-.actions button:nth-child(3) {
-  background: #dc3545;
+.actions button:nth-child(2):hover {
+  background: linear-gradient(45deg, #7b1fa2, #ab47bc);
+}
+
+/* .actions button:nth-child(3) {
+  background: linear-gradient(45deg, #f44336, #e57373);
   color: white;
+}
+
+.actions button:nth-child(3):hover {
+  background: linear-gradient(45deg, #d32f2f, #ef5350);
+} */
+
+.img{
+    height: 15px;
+    width: 15px;
 }
 
 .empty {
   text-align: center;
-  color: #777;
   font-style: italic;
+  color: #555;
+  font-size: 16px;
+}
+/* Container for filters */
+.filters {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  align-items: center;
+}
+
+/* Dropdown select styling */
+.filters select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.filters select:hover {
+  border-color: #888;
+}
+
+/* Optional label for dropdowns */
+.filters label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+/* Container for filter buttons if you use buttons instead of selects */
+.filters button {
+  padding: 8px 14px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.filters button:hover {
+  background-color: #45a049;
 }
