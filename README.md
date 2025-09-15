@@ -28,4 +28,9 @@ This project demonstrates how to build and connect a full-stack app, manage stat
 
 ---
 
-## 📂 Project Structure
+## 📂 Project Structure: 
+todo-app/
+│── backend/ # Node.js + Express API
+│── frontend/ # React.js application
+│── database/ # SQLite database file
+│── README.md
