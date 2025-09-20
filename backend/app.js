@@ -3,6 +3,9 @@ const path = require("path");
 const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 
+
+
+
 const app = express();
 app.use(express.json());
 
@@ -41,6 +44,27 @@ const initializeDBandServer = async () => {
 initializeDBandServer();
 
 // GET all todos
+const jwt=require("jsonwebtoken");
+const SECRET_KEY="my_secret_key";
+
+app.post("/login/",async (req,res)=>{
+  const {username,password}=req.body;
+
+  if(username==="admin" && password==="1234"){
+    const token=jwt.sign({username},SECRET_KEY,{expiresIn : "21h"});
+    res.status(200).json({success: true,token, message: "Login Successfull"});
+  }
+  else{
+    res.status(401).json({success: false, message: "Invalid username and password"});
+  }
+});
+
+
+
+
+
+
+
 app.get("/todos/", async (req, res) => {
   const { search_q, status, priority } = req.query;
   let query = "SELECT * FROM todosLists";

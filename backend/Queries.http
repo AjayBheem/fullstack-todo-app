@@ -1,0 +1,8 @@
+POST http://localhost:3000/todos/
+Content-Type: application/json
+
+{
+  "todo": "Finalize event theme",
+  "priority": "LOW",
+  "status": "TO DO"
+}

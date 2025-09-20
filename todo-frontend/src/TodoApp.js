@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { getTodos, addTodo, updateTodo, deleteTodo } from "./api";
+import Cookies from "js-cookie";
+import { Navigate } from "react-router-dom";
 import "./TodoApp.css"; // single CSS file
 
 class TodoApp extends Component {
-  state = { todoList: [], newTodo: "",newPriority: "LOW", filterStatus: "ALL", filterPriority: "ALL" };
+  state = { todoList: [], newTodo: "",newPriority: "LOW", filterStatus: "ALL", filterPriority: "ALL",searchText: "" };
 
   componentDidMount() {
+
     this.loadTodos();
   }
 
@@ -37,20 +40,37 @@ class TodoApp extends Component {
     deleteTodo(id).then(() => this.loadTodos());
   };
 
+  handleLogout=()=>{
+    Cookies.remove("jwt_token");
+    Cookies.remove("username");
+    window.location.href="/";
+  }
+
   render() {
+    const username=Cookies.get("username") ||"User";
+
     const { todoList, newTodo, newPriority,filterStatus,filterPriority } = this.state;
     const filteredTodos=todoList.filter((t)=>{
       const statusMatch= filterStatus==="ALL" || t.status === filterStatus;
       const priorityMatch= filterPriority==="ALL" || t.priority === filterPriority;
-      return statusMatch && priorityMatch;
+      const searchMatch=t.todo.toLowerCase().includes(this.state.searchText.toLowerCase());
+      return statusMatch && priorityMatch && searchMatch;
     })
+    const jwtToken=Cookies.get("jwt_token");
+    if(jwtToken===undefined){
+      return <Navigate to="/"/>
+    }
 
     return (
       <div className="todo-container">
-        <h1 className="title">Todo App</h1>
-
-        {/* Input Section */}
+        <div className="todo-header">
+            <h1 className="title">Welcome, {username}</h1>
+            <button className="logout-btn" onClick={this.handleLogout}>
+              Logout
+            </button>
+        </div>
         <div className="todo-input">
+          
           <input
             type="text"
             placeholder="Enter new todo..."
@@ -87,6 +107,15 @@ class TodoApp extends Component {
 
         </div>
         <h1 className="h2">Total Tasks: <span>{filteredTodos.length}</span></h1>
+        <div className="search-bar">
+            <img src="https://assets.ccbp.in/frontend/react-js/google-search-icon.png" alt="search icon"/>
+            <input 
+            type="search" 
+            placeholder="Search todos..." 
+            value={this.state.searchText} 
+            onChange={(e)=>this.setState({searchText: e.target.value})}
+            />
+        </div>
 
         {/* List Section */}
         <ul className="todo-list">
@@ -100,7 +129,7 @@ class TodoApp extends Component {
             filteredTodos.map((t) => (
               <li key={t.id} className="todo-item">
                 <div className="todo-text">
-                  <b>{t.todo}</b>{" "}
+                  <b className={t.status === "DONE" ? "done-text": ""}>{t.todo}</b>{" "}
                   <span
                     className={`priority-badge ${
                       t.priority === "HIGH"
